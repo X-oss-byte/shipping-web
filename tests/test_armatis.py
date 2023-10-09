@@ -23,7 +23,9 @@ from armatis.parsers.kgb import KGBParser
 if str is not bytes:
     unicode = str
 
-DIR_MOCK_RESPONSES = '%s/mock_responses' % os.path.dirname(os.path.realpath(__file__))
+DIR_MOCK_RESPONSES = (
+    f'{os.path.dirname(os.path.realpath(__file__))}/mock_responses'
+)
 
 
 class ArmatisTest(unittest.TestCase):
@@ -48,8 +50,9 @@ class ArmatisTest(unittest.TestCase):
     @patch.object(DoorToDoorParser, '_fetch')
     def test_cj_parser(self, _fetch):
         def fetch():
-            with open('%s/d2d.html' % DIR_MOCK_RESPONSES, 'r') as f:
+            with open(f'{DIR_MOCK_RESPONSES}/d2d.html', 'r') as f:
                 return f.read()
+
         _fetch.return_value = fetch()
         armatis = Armatis('cj', 123456789123)
         result = armatis.find()
@@ -66,8 +69,9 @@ class ArmatisTest(unittest.TestCase):
     @patch.object(KGLogisParser, '_fetch')
     def test_kg_logis_parser(self, _fetch):
         def fetch():
-            with open('%s/kg_logis.html' % DIR_MOCK_RESPONSES, 'r') as f:
+            with open(f'{DIR_MOCK_RESPONSES}/kg_logis.html', 'r') as f:
                 return f.read()
+
         _fetch.return_value = fetch()
         armatis = Armatis('kglogis', 123456789123)
         result = armatis.find()
@@ -84,8 +88,9 @@ class ArmatisTest(unittest.TestCase):
     @patch.object(HanjinParser, '_fetch')
     def test_hanjin_parser(self, _fetch):
         def fetch():
-            with open('%s/hanjin.html' % DIR_MOCK_RESPONSES, 'r') as f:
+            with open(f'{DIR_MOCK_RESPONSES}/hanjin.html', 'r') as f:
                 return f.read()
+
         _fetch.return_value = fetch()
         armatis = Armatis('hanjin', 123456789123)
         result = armatis.find()
@@ -99,8 +104,9 @@ class ArmatisTest(unittest.TestCase):
     @patch.object(LotteParser, '_fetch')
     def test_lotte_parser(self, _fetch):
         def fetch():
-            with open('%s/lotte.html' % DIR_MOCK_RESPONSES, 'r') as f:
+            with open(f'{DIR_MOCK_RESPONSES}/lotte.html', 'r') as f:
                 return f.read()
+
         _fetch.return_value = fetch()
         armatis = Armatis('lotte', 123456789123)
         result = armatis.find()
@@ -112,9 +118,9 @@ class ArmatisTest(unittest.TestCase):
     @patch.object(LogenParser, '_fetch')
     def test_logen_parser(self, _fetch):
         def fetch():
-            with open('%s/logen.html' % DIR_MOCK_RESPONSES, 'r',
-                      encoding='euc-kr') as f:
+            with open(f'{DIR_MOCK_RESPONSES}/logen.html', 'r', encoding='euc-kr') as f:
                 return f.read()
+
         _fetch.return_value = fetch()
         armatis = Armatis('logen', 12345678912)
         result = armatis.find()
@@ -126,8 +132,9 @@ class ArmatisTest(unittest.TestCase):
     @patch.object(KGBParser, '_fetch')
     def test_kgb_parser(self, _fetch):
         def fetch():
-            with open('%s/kgb.html' % DIR_MOCK_RESPONSES, 'r') as f:
+            with open(f'{DIR_MOCK_RESPONSES}/kgb.html', 'r') as f:
                 return f.read()
+
         _fetch.return_value = fetch()
         armatis = Armatis('kgb', 1234567891)
         result = armatis.find()
@@ -140,8 +147,9 @@ class ArmatisTest(unittest.TestCase):
     @patch.object(EMSParser, '_fetch')
     def test_ems_parser(self, _fetch):
         def fetch():
-            with open('%s/ems.html' % DIR_MOCK_RESPONSES, 'r') as f:
+            with open(f'{DIR_MOCK_RESPONSES}/ems.html', 'r') as f:
                 return f.read()
+
         _fetch.return_value = fetch()
         armatis = Armatis('ems', 'AA123456789BB')
         result = armatis.find()
@@ -152,9 +160,9 @@ class ArmatisTest(unittest.TestCase):
     @patch.object(GTXParser, '_fetch')
     def test_gtx_parser(self, _fetch):
         def fetch():
-            with open('%s/gtx.html' % DIR_MOCK_RESPONSES, 'r',
-                      encoding='euc-kr') as f:
+            with open(f'{DIR_MOCK_RESPONSES}/gtx.html', 'r', encoding='euc-kr') as f:
                 return f.read()
+
         _fetch.return_value = fetch()
         armatis = Armatis('gtx', 123456789123)
         result = armatis.find()
@@ -166,8 +174,9 @@ class ArmatisTest(unittest.TestCase):
     @patch.object(HapdongParser, '_fetch')
     def test_hapdong_parser(self, _fetch):
         def fetch():
-            with open('%s/hapdong.html' % DIR_MOCK_RESPONSES, 'r') as f:
+            with open(f'{DIR_MOCK_RESPONSES}/hapdong.html', 'r') as f:
                 return f.read()
+
         _fetch.return_value = fetch()
         armatis = Armatis('hapdong', 12345678912)
         result = armatis.find()
@@ -180,8 +189,9 @@ class ArmatisTest(unittest.TestCase):
     @patch.object(EPostParser, '_fetch')
     def test_epost_parser(self, _fetch):
         def fetch():
-            with open('%s/epost.html' % DIR_MOCK_RESPONSES, 'r') as f:
+            with open(f'{DIR_MOCK_RESPONSES}/epost.html', 'r') as f:
                 return f.read()
+
         _fetch.return_value = fetch()
         armatis = Armatis('epost', 1234567891234)
         result = armatis.find()

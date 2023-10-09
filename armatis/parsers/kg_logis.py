@@ -7,10 +7,12 @@ from armatis.parser import Parser, ParserRequest
 class KGLogisParser(Parser):
     def __init__(self, invoice_number, config):
         super(KGLogisParser, self).__init__(invoice_number, config)
-        parser_request = ParserRequest(url='https://www.kglogis.co.kr/delivery/delivery_result.jsp',
-                                       method='POST',
-                                       body='item_no=%s' % self.invoice_number,
-                                       header={'Content-Type': 'application/x-www-form-urlencoded'})
+        parser_request = ParserRequest(
+            url='https://www.kglogis.co.kr/delivery/delivery_result.jsp',
+            method='POST',
+            body=f'item_no={self.invoice_number}',
+            header={'Content-Type': 'application/x-www-form-urlencoded'},
+        )
         self.add_request(parser_request)
 
     def parse(self, parser):
@@ -34,10 +36,7 @@ class KGLogisParser(Parser):
         for tr in trs:
             tds = tr.find_all('td')
             if len(tds) == 5:
-                time = '%s %s' % (
-                    tds[0].find('span').get_text(),
-                    tds[1].find('span').get_text(),
-                )
+                time = f"{tds[0].find('span').get_text()} {tds[1].find('span').get_text()}"
                 status = tds[2].find('span').get_text()
                 location = tds[3].find('span').get_text()
                 phone1 = tds[4].find('span').get_text()

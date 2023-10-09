@@ -11,15 +11,17 @@ class LotteParser(Parser):
             {
                 'url': 'https://www.lotteglogis.com/home/personal/inquiry/track',
                 'method': 'POST',
-                'body': ('InvNo=%s&action=processInvoiceSubmit' % self.invoice_number).encode('utf-8'),
-                'header': {'Content-Type': 'application/x-www-form-urlencoded'}
+                'body': f'InvNo={self.invoice_number}&action=processInvoiceSubmit'.encode(
+                    'utf-8'
+                ),
+                'header': {'Content-Type': 'application/x-www-form-urlencoded'},
             },
             {
                 'url': 'https://www.lotteglogis.com/home/personal/inquiry/track',
                 'method': 'POST',
                 'body': 'action=processInvoiceLinkSubmit'.encode('utf-8'),
-                'header': {'Content-Type': 'application/x-www-form-urlencoded'}
-            }
+                'header': {'Content-Type': 'application/x-www-form-urlencoded'},
+            },
         ]
 
     def parse(self, parser):
@@ -37,7 +39,7 @@ class LotteParser(Parser):
         for tr in trs:
             tds = tr.find_all('td')
             if len(tds) > 0:
-                time = '%s %s' % (getattr(tds[0], 'string', ''), getattr(tds[1], 'string', ''))
+                time = f"{getattr(tds[0], 'string', '')} {getattr(tds[1], 'string', '')}"
                 location = getattr(tds[2].a, 'string', '') or getattr(tds[2], 'string', '')
                 status = getattr(tds[3].p, 'string', '')
 

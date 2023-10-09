@@ -15,11 +15,7 @@ class Company(object):
         self.phone = phone
 
     def __repr__(self):
-        return '[%s] %s (%s)' % (
-            self.code,
-            self.name,
-            self.phone
-        )
+        return f'[{self.code}] {self.name} ({self.phone})'
 
 
 class Track(object):
@@ -37,13 +33,7 @@ class Track(object):
         self.phone2 = phone2
 
     def __repr__(self):
-        return '[%s] %s - %s / %s / %s' % (
-            self.time,
-            self.status,
-            self.location,
-            self.phone1,
-            self.phone2
-        )
+        return f'[{self.time}] {self.status} - {self.location} / {self.phone1} / {self.phone2}'
 
 
 class Tracker(object):
@@ -66,10 +56,9 @@ class Tracker(object):
         :param str status: The status to find the tracking information
         :return: The tracking information matching the status
         """
-        tracks = list(filter(lambda x: x.status == status, self._tracks))
-        if len(tracks) > 0:
+        if tracks := list(filter(lambda x: x.status == status, self._tracks)):
             return tracks[-1]
-        raise LookupError("Can't find the track by status %s" % status)
+        raise LookupError(f"Can't find the track by status {status}")
 
     def __iter__(self):
         return iter(self._tracks)
@@ -90,9 +79,4 @@ class Parcel(object):
         self.note = note
 
     def __repr__(self):
-        return '[%s] From: %s, To: %s, %s' % (
-            self.invoice_number,
-            self.sender,
-            self.receiver,
-            self.note
-        )
+        return f'[{self.invoice_number}] From: {self.sender}, To: {self.receiver}, {self.note}'
