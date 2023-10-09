@@ -12,13 +12,12 @@ from armatis.models import Parcel, Company, Tracker
 
 
 def dict2parser_request(pr_dict):
-    pr = ParserRequest(
+    return ParserRequest(
         url=pr_dict.get('url'),
         method=pr_dict.get('method'),
         body=pr_dict.get('body'),
-        header=pr_dict.get('header')
+        header=pr_dict.get('header'),
     )
-    return pr
 
 
 class Source(object):

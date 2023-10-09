@@ -39,7 +39,7 @@ class HanjinParser(Parser):
                     phone = getattr(tds[4], 'get_text', '')(strip=True)
 
                     track = Track()
-                    track.time = '%s %s' % (date, time)
+                    track.time = f'{date} {time}'
                     track.location = location
                     track.status = status
                     track.phone1 = phone

@@ -7,7 +7,9 @@ from armatis.parser import Parser, ParserRequest
 class KGBParser(Parser):
     def __init__(self, invoice_number, config):
         super(KGBParser, self).__init__(invoice_number, config)
-        parser_request = ParserRequest(url='http://www.kgbls.co.kr/auction/?number=%s' % self.invoice_number)
+        parser_request = ParserRequest(
+            url=f'http://www.kgbls.co.kr/auction/?number={self.invoice_number}'
+        )
         self.add_request(parser_request)
 
     def parse(self, parser):
@@ -33,8 +35,7 @@ class KGBParser(Parser):
                 time = getattr(tds[0], 'string', '')
                 status = getattr(tds[3], 'string', '')
                 location = getattr(tds[1], 'string', '')
-                phone = '%s %s' % (getattr(tds[4], 'string', ''),
-                                   getattr(tds[2], 'string', ''))
+                phone = f"{getattr(tds[4], 'string', '')} {getattr(tds[2], 'string', '')}"
 
                 track = Track()
                 track.time = time

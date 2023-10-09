@@ -12,8 +12,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 def armatis_test_suite():
     test_loader = unittest.TestLoader()
-    test_suite = test_loader.discover('tests', pattern='test_*.py')
-    return test_suite
+    return test_loader.discover('tests', pattern='test_*.py')
 
 setup(
     name='armatis',

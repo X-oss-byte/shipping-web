@@ -104,7 +104,7 @@ class Armatis(object):
         :return: The list of company's name and company's parser code
         :rtype: dict
         """
-        return list({'name': k.name, 'code': k.code} for k, _ in self.parser_manager)
+        return [{'name': k.name, 'code': k.code} for k, _ in self.parser_manager]
 
     def find(self, company_code=None, invoice_number=None):
         """
